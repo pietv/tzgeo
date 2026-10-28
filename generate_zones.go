@@ -93,7 +93,7 @@ func generate() error {
 	if err := os.WriteFile("zones.go", src, 0644); err != nil {
 		return err
 	}
-	fmt.Printf("Wrote zones.go (%d zones)\n", len(zones))
+	fmt.Printf("Wrote %d zones (to ‘zones.go’)\n", len(zones))
 	return nil
 }
 
