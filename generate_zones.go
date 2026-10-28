@@ -93,7 +93,7 @@ func generate() error {
 	if err := os.WriteFile("zones.go", src, 0644); err != nil {
 		return err
 	}
-	fmt.Printf("Wrote zones.go (%d zones)\n", len(zones))
+	fmt.Printf("Wrote %d zones (to ‘zones.go’).\n", len(zones))
 	return nil
 }
 
@@ -107,21 +107,21 @@ func parseISO6709(s string) (lat, lon float64, err error) {
 	if m == nil {
 		return 0, 0, fmt.Errorf("cannot parse ISO 6709 coord %q", s)
 	}
-	return dms(m[1], m[2], m[3]), dms(m[4], m[5], m[6]), nil
-}
 
-// dms converts sign-prefixed degrees, minutes, and optional seconds to
-// decimal degrees.
-func dms(deg, min, sec string) float64 {
-	d, _ := strconv.Atoi(deg[1:])
-	m, _ := strconv.Atoi(min)
-	s := 0
-	if sec != "" {
-		s, _ = strconv.Atoi(sec)
+	// dms converts sign-prefixed degrees, minutes, and optional seconds to
+	// decimal degrees.
+	dms := func(deg, min, sec string) float64 {
+		d, _ := strconv.Atoi(deg[1:])
+		m, _ := strconv.Atoi(min)
+		s := 0
+		if sec != "" {
+			s, _ = strconv.Atoi(sec)
+		}
+		v := float64(d) + float64(m)/60 + float64(s)/3600
+		if deg[0] == '-' {
+			v = -v
+		}
+		return v
 	}
-	v := float64(d) + float64(m)/60 + float64(s)/3600
-	if deg[0] == '-' {
-		v = -v
-	}
-	return v
+	return dms(m[1], m[2], m[3]), dms(m[4], m[5], m[6]), nil
 }
