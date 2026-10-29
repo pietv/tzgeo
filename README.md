@@ -13,11 +13,11 @@ $ printenv TZ
 Europe/Berlin
 ```
 
-## Coordinates
+## Output
 
 Latitude and longitude are positive and negative `float64` numbers:
-* positive latitude is **N**orth, negative is **S**outh
-* positive longitude is **E**ast, negative is **W**est.
+* positive latitude (`lat`) is **N**orth, negative is **S**outh.
+* positive longitude (`lon`) is **E**ast, negative is **W**est.
 
 ```go
 import (
