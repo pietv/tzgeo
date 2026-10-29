@@ -16,7 +16,7 @@ Europe/Berlin
 ## Coordinates
 
 Latitude and longitude are positive and negative `float64` numbers:
-* positive latitude is **N**orth, negative is **S**outh
+* positive latitude is **N**orth, negative is **S**outh.
 * positive longitude is **E**ast, negative is **W**est.
 
 ```go
