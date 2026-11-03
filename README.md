@@ -26,7 +26,7 @@ import (
     "github.com/pietv/tzgeo"
 )
 
-func ExampleLookup() {
+func main() {
     lat, lon, ok := tzgeo.Lookup("Europe/Berlin")
     fmt.Printf("%.4f %.4f %v\n", lat, lon, ok) // 52.5, 13.3667, true
 }
